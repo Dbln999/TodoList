@@ -10,8 +10,8 @@ export default class App extends Component {
   
     this.state = {
        names:[
-        {title:'Danja', id:0, done:false},
-        {title:'Nikita', id:1, done:false}
+        {title:'Danja', id:0, done:false, time: new Date().toISOString().slice(0,10)},
+        {title:'Nikita', id:1, done:false, time: new Date().toISOString().slice(0,10)}
        ]
     }
   }
@@ -30,33 +30,35 @@ export default class App extends Component {
 }) 
 
   }
-  addName = name =>{
-    this.setState(state=>{
-      let{ names } = state;
-      names.push({
-        id:names.length,
+  addName = (name, time) =>{
+      this.state.names.push({
+        id:Date.now(),
         title:name,
-        done:false
-      })
-      return name
+        done:false,
+        time:time
+      
     })
+    this.setState({names:this.state.names})
   }
   render() {
     const{names} = this.state
-    const activeTask = names.filter((completed)=>completed.done)
     const inProg = names.filter((completed) => !completed.done)
+    const active = names.filter(compl => compl.done)
     return (
       
       <div className='App'>
         
-        <h1 className='tasks'>Names:{inProg.length}</h1>
-        <Add addName={this.addName}></Add>
-        {[...inProg, ...activeTask].map((name)=> (
+        <h1 className='tasks'>Todos: {names.length}</h1>
+        <Add addName={this.addName} ></Add>
+        
+        {[...inProg, ...active].map((name)=> (
         <Enter 
+        
         names={name} 
+        time={name.time}
         key={name.id}
         deleteTask={()=> this.deleteTask(name.id)}
-        doneTask={()=> this.doneTask(name.id)}>
+        >
         </Enter>
         ))}
         

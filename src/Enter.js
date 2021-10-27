@@ -21,7 +21,7 @@ const [complete, setComplete] = useState(false)
     return(
         <div className="name">
             <Trash></Trash>
-            <p className={className}>{names.title}</p>
+            <p className={className}>{names.title} {names.time}</p>
             <Standing></Standing>
         </div>
     )

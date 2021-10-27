@@ -12,13 +12,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgb(174, 185, 250);
-  margin-top: 5px;
+border-bottom: 2px solid rgb(174, 185, 250);
   height: 35px;
-  border-radius: 5px;
+
   text-decoration: none;
 }
-
+.dateInp{
+  border-radius: 10px;
+  border: 0;
+  height: 25px;
+}
 .trash{
   cursor: pointer;
 }
@@ -32,11 +35,21 @@ text-decoration: none;
 
 .addInp{
   border-radius: 10px;
-  margin-right: 10px;
-  border: 0;
-  height: 21px;
+    width: 15em;
+    height: 1.5em;
+    border: 2px rgb(161, 161, 161) solid;
+    background: rgb(212, 212, 212);
+    margin-right: 10px;
+}
+.addInp:focus{
+  outline: 0;
+  transform: translateY(2px);
+}
+.dateInp:focus{
+  transform: translateY(2px);
 }
 .addBtn{
+  margin-top: 10px;
   border-radius: 10px;
   background: #4462e9;
   border: 0;
@@ -47,6 +60,9 @@ text-decoration: none;
 }
 .addBtn:hover{
   background: #31468a;
+}
+.addBtn:active{
+  transform: translateY(2px);
 }
 .App-logo {
   height: 40vmin;

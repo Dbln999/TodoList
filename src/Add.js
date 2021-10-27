@@ -6,32 +6,40 @@ class Add extends Component {
         super(props)
     
         this.state = {
-             input: ''
+             input: '',
+             date:''
         }
     }
 
     addText = () =>{
         const { input } = this.state
-        if(input){
-            this.props.addName(input);
-            this.setState({input: ''})
+        const { date } = this.state;
+        if(input.trim() || date){
+            this.props.addName(input, date);
+            this.setState({input: '', date:''})
         }
+
     }
-    
-    inpChange = e =>{
-        this.setState({input:e.target.value})
+    inpChange = event =>{
+        this.setState({input:event.target.value})
     }
-    handleEnter = e =>{
-        if(e.key ==='Enter')
-            this.addName()
+    dateChage = e =>{
+        this.setState({date:e.target.value})
+    }
+    handleEnter = event =>{
+        if(event.key ==='Enter')
+            this.addText()
+            
+            
     }
     render() {
         const { input } = this.state
+        const{ date } = this.state
         return (
             <div className='add'>
-                
                 <input className='addInp' onKeyPress={this.handleEnter} onChange={this.inpChange} value={input}/>
-                <button className='addBtn' onClick={this.addText}>ADD</button>
+                <input className='dateInp' type='date' onChange={this.dateChage} value={date}/>
+                <button className='addBtn'  onClick={this.addText}>ADD</button>
             </div>
         )
     }
